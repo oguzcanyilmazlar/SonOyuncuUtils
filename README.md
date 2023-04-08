@@ -1,12 +1,14 @@
 ### SonOyuncuUtils
 
-#### Nasıl Kurulur
-mvn clean install(maven indirili olması gerek) ile buildledikten sonra SpigotAgent'ın jarını java agent olarak spigota ayarlayın. Plugin'in jarını da kendi plugins klasörüne atabilirsiniz
+Bloklar tam ekli değil.
 
-#### TODO:
+#### Eklenecekler:
 - Blok yönleri
 - Blok varyantları
 - Paketler
+
+#### Nasıl Kurulur
+mvn clean install(maven indirili olması gerek) ile buildledikten sonra SpigotAgent'ın jarını java agent olarak spigota ayarlayın. Plugin'in jarını da kendi plugins klasörüne atabilirsiniz
 
 #### İtem Nasıl Eklenir
 scripts klasörü içerisinde items.json var, ona dilediğiniz gibi ekledikten sonra ana klasördeki generate.bat'ı çalıştırın.
