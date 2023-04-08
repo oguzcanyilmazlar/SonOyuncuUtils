@@ -1,0 +1,234 @@
+[
+    {
+    "id": "810",
+    "name": "sword_zehirlikeskinlik",
+    "type": "sword",
+    "damage": "8f"
+    },
+    {
+        "id": "811",
+        "name": "sword_kankilici",
+        "type": "sword",
+        "damage": "8f"
+    },
+    {
+        "id": "812",
+        "name": "sword_buzperisi",
+        "type": "sword",
+        "damage": "8f"
+    },
+    {
+        "id": "813",
+        "name": "sword_mavigokyuzukilici",
+        "type": "sword",
+        "damage": "9.5f"
+    },
+    {
+        "id": "883",
+        "name": "gun/t_knife",
+        "varName": "gun_t_knife",
+        "type": "sword",
+        "damage": "4f"
+    },
+    {
+        "id": "806",
+        "name": "titanium_waraxe",
+        "type": "sword",
+        "damage": "7.5f"
+    },
+    {
+    "id": "790",
+    "name": "titanium_helmet",
+    "type": "helmet"
+    },
+    {
+    "id": "791",
+    "name": "titanium_chestplate",
+    "type": "chestplate"
+    },
+    {
+    "id": "792",
+    "name": "titanium_leggings",
+    "type": "leggings"
+    },
+    {
+    "id": "793",
+    "name": "titanium_boots",
+    "type": "boots"
+    },
+    {
+        "id": "802",
+        "name": "titanium_shovel",
+        "type": "shovel"
+    },
+    {
+        "id": "803",
+        "name": "titanium_pickaxe",
+        "type": "pickaxe"
+    },
+    {
+        "id": "804",
+        "name": "titanium_axe",
+        "type": "axe"
+    },
+    {
+        "id": "805",
+        "name": "titanium_hoe",
+        "type": "hoe"
+    },
+    {
+        "id": "851",
+        "name": "repairkit",
+        "type": "item"
+    },
+    {
+        "id": "853",
+        "name": "hammer",
+        "type": "item"
+    },
+    {
+        "id": "855",
+        "name": "lock_iron",
+        "type": "item"
+    },
+    {
+        "id": "856",
+        "name": "key_golden",
+        "type": "item"
+    },
+    {
+        "id": "536",
+        "name": "customfurnace",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "540",
+        "name": "wasted_flower",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "600",
+        "name": "tv",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "601",
+        "name": "digital_clock",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "604",
+        "name": "chest_iron",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "605",
+        "name": "chest_gold",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "606",
+        "name": "chest_diamond",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "610",
+        "name": "modern_tv",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "611",
+        "name": "fridge",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "613",
+        "name": "tv_stand",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "614",
+        "name": "range_hood",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "615",
+        "name": "oven",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "616",
+        "name": "washing_machine",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "617",
+        "name": "stereo",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "618",
+        "name": "printer",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "619",
+        "name": "stone_path",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "620",
+        "name": "grill",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "621",
+        "name": "bird_bath",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+    "id": "535",
+    "name": "podium",
+    "type": "block",
+    "strength": "1.0f",
+    "durability": "10"
+    }
+    
+
+]

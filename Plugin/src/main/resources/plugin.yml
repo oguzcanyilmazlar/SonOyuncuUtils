@@ -1,0 +1,5 @@
+name: SonOyuncuUtils
+version: '${project.version}'
+main: me.acablade.sonoyuncuutils.plugin.SonOyuncuPacketsMain
+authors: [ Acablade ]
+description: SonOyuncu Utils
