@@ -43,7 +43,7 @@ public final class SonOyuncuPackets implements Listener {
     public SonOyuncuPackets(JavaPlugin plugin){
         this.plugin = plugin;
         this.clientList = new HashSet<>();
-        protocol = new TinyProtocolImpl(plugin);
+//        protocol = new TinyProtocolImpl(plugin);
     }
 
     @EventHandler
