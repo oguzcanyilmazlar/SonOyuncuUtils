@@ -55,7 +55,7 @@ public final class SonOyuncuPackets implements Listener {
     }
     @EventHandler
     public void onInteract(BlockPlaceEvent event){
-        event.getPlayer().sendMessage(CraftMagicNumbers.getItem(event.getBlockPlaced().getType()).getName());
+        // event.getPlayer().sendMessage(CraftMagicNumbers.getItem(event.getBlockPlaced().getType()).getName());
     }
 
 
