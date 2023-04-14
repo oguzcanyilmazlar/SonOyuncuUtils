@@ -22,26 +22,7 @@ import static org.objectweb.asm.Opcodes.RETURN;
 
 public class Main {
 
-
-
-
     public static Logger LOGGER = Logger.getLogger("JavaAgent");
-    private static boolean initialized;
-    private static Instrumentation instrumentation;
-    private static String obcVersion, obcClassName;
-    private static Path serverJar;
-
-    private final static Remapper remapper = new Remapper() {
-        @Override
-        public String map(String name) {
-            if (!name.startsWith("org/bukkit/craftbukkit/Main") && !name.startsWith("org/bukkit/craftbukkit/libs/") &&
-                    name.startsWith("org/bukkit/craftbukkit/") && !name.startsWith("org/bukkit/craftbukkit/v1_")) {
-                if (obcVersion == null) throw new IllegalStateException("Cannot detect minecraft version!");
-                return obcClassName + name.substring(23);
-            }
-            return super.map(name);
-        }
-    };
 
     private final static class Transformer implements ClassFileTransformer {
 
@@ -58,21 +39,6 @@ public class Main {
             }
         }
 
-        private File getFileFromResource(String fileName) throws URISyntaxException{
-
-            ClassLoader classLoader = getClass().getClassLoader();
-            URL resource = classLoader.getResource(fileName);
-            if (resource == null) {
-                throw new IllegalArgumentException("file not found! " + fileName);
-            } else {
-
-                // failed if files have whitespaces or special characters
-                //return new File(resource.getFile());
-
-                return new File(resource.toURI());
-            }
-
-        }
 
         @Override
         public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
@@ -85,6 +51,48 @@ public class Main {
                 LOGGER.info("---- found Material ----");
 
                 return this.materialClass;
+            }
+            else if("org/bukkit/plugin/messaging/StandardMessenger".equals(className)){
+
+                LOGGER.info("---- found StandardMessenger ----");
+
+                cr.accept(new ClassVisitor(Opcodes.ASM9, cw) {
+                    @Override
+                    public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
+                        MethodVisitor methodVisitor = super.visitMethod(access, name, descriptor, signature, exceptions);
+                        return name.equals("validateChannel") ? new MethodVisitor(Opcodes.ASM9) {
+                            @Override
+                            public void visitCode() {
+                                Label label0 = new Label();
+                                methodVisitor.visitLabel(label0);
+                                methodVisitor.visitLineNumber(8, label0);
+                                methodVisitor.visitVarInsn(ALOAD, 0);
+                                Label label1 = new Label();
+                                methodVisitor.visitJumpInsn(IFNONNULL, label1);
+                                Label label2 = new Label();
+                                methodVisitor.visitLabel(label2);
+                                methodVisitor.visitLineNumber(9, label2);
+                                methodVisitor.visitTypeInsn(NEW, "java/lang/IllegalArgumentException");
+                                methodVisitor.visitInsn(DUP);
+                                methodVisitor.visitLdcInsn("Channel cannot be null");
+                                methodVisitor.visitMethodInsn(INVOKESPECIAL, "java/lang/IllegalArgumentException", "<init>", "(Ljava/lang/String;)V", false);
+                                methodVisitor.visitInsn(ATHROW);
+                                methodVisitor.visitLabel(label1);
+                                methodVisitor.visitLineNumber(10, label1);
+                                methodVisitor.visitFrame(Opcodes.F_SAME, 0, null, 0, null);
+                                methodVisitor.visitInsn(RETURN);
+                                Label label3 = new Label();
+                                methodVisitor.visitLabel(label3);
+                                methodVisitor.visitLocalVariable("channel", "Ljava/lang/String;", null, label0, label3, 0);
+                                methodVisitor.visitMaxs(3, 1);
+                                methodVisitor.visitEnd();
+
+                            }
+                        } : methodVisitor;
+                    }
+                }, ClassReader.EXPAND_FRAMES);
+                return cw.toByteArray();
+            }
 
 //                return MaterialTransformer.dump();
 
@@ -107,9 +115,7 @@ public class Main {
 //                    }
 //                }, ClassReader.EXPAND_FRAMES);
 //                return cw.toByteArray();
-            }
-            if (!initialized) return data;
-            return null;
+            return data;
         }
     }
 
@@ -132,7 +138,6 @@ public class Main {
         LOGGER.info(pkg.getImplementationTitle() + " version: " + pkg.getImplementationVersion() +
                 " (" + pkg.getImplementationVendor() + ")");
         System.setProperty("mixin.env.remapRefMap", "true");
-        Main.instrumentation = instrumentation;
         instrumentation.addTransformer(new Transformer(), true);
         System.setProperty("papershelled.enable", "true");
     }

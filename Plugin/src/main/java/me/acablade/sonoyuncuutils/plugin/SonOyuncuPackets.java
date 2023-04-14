@@ -1,25 +1,23 @@
 package me.acablade.sonoyuncuutils.plugin;
 
+import com.comphenix.protocol.ProtocolLibrary;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import me.acablade.sonoyuncuutils.plugin.items.SonOyuncuItems;
-import me.acablade.sonoyuncuutils.plugin.tinyprotocol.TinyProtocol;
-import me.acablade.sonoyuncuutils.plugin.tinyprotocol.TinyProtocolImpl;
-import net.minecraft.server.v1_8_R3.*;
-import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
-import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_8_R3.util.CraftMagicNumbers;
+import me.acablade.sonoyuncuutils.plugin.packets.DiscordActivityPacket;
+import net.minecraft.server.v1_8_R3.PacketPlayOutCustomPayload;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.messaging.StandardMessenger;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.io.IOException;
+import java.util.*;
 
 public final class SonOyuncuPackets implements Listener {
 
@@ -28,6 +26,10 @@ public final class SonOyuncuPackets implements Listener {
     public static void init(JavaPlugin plugin){
         SonOyuncuItems.init();
         instance = new SonOyuncuPackets(plugin);
+        SonOyuncuPacketManager.registerPackets();
+        plugin.getServer().getMessenger().registerIncomingPluginChannel(plugin, "Teyyapclntvars\0Teyyap", (s, player, bytes) -> {});
+        plugin.getServer().getMessenger().registerOutgoingPluginChannel(plugin, "Teyyapclntvars\0Teyyap");
+        plugin.getServer().getMessenger().registerOutgoingPluginChannel(plugin, "MC|GameMenu");
         plugin.getServer().getPluginManager().registerEvents(instance, plugin);
     }
 
@@ -38,14 +40,11 @@ public final class SonOyuncuPackets implements Listener {
     private Set<UUID> clientList;
     private final JavaPlugin plugin;
 
-    private TinyProtocol protocol;
-
     public SonOyuncuPackets(JavaPlugin plugin){
         this.plugin = plugin;
         this.clientList = new HashSet<>();
 //        protocol = new TinyProtocolImpl(plugin);
     }
-
     @EventHandler
     public void onLogin(PlayerLoginEvent event){
         plugin.getLogger().info(event.getHostname());
@@ -56,6 +55,27 @@ public final class SonOyuncuPackets implements Listener {
     @EventHandler
     public void onInteract(BlockPlaceEvent event){
         // event.getPlayer().sendMessage(CraftMagicNumbers.getItem(event.getBlockPlaced().getType()).getName());
+    }
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent event) throws IOException {
+        SonOyuncuPacketManager.sendCustomPacket(event.getPlayer(), new DiscordActivityPacket("Emrenin annesiyle"));
+        plugin.getServer().getScheduler().runTaskLater(plugin, () -> open(event.getPlayer()), 20);
+    }
+
+    String s = "{\"Title\":\"Kaptan Menüsü\",\"Games\":[{\"ID\":\"orman\",\"TextureID\":\"survival\",\"DisplayName\":\"Orman\",\"Online\":\"111\"},{\"ID\":\"pandora\",\"TextureID\":\"arenapvp\",\"DisplayName\":\"Pandora\",\"Online\":\"37\"},{\"ID\":\"nether\",\"TextureID\":\"thepit\",\"DisplayName\":\"Nether\",\"Online\":\"0\"},{\"ID\":\"pvp\",\"TextureID\":\"survivaltitanium\",\"DisplayName\":\"Titanya Limanı\",\"Online\":\"51\"}]}";
+    String open = "Open";
+
+    public void open(Player p){
+        ByteBuf byteBuf = Unpooled.buffer();
+
+        byteBuf.writeByte(open.getBytes().length);
+        byteBuf.writeBytes(open.getBytes());
+        byteBuf.writeBytes(new byte[]{0x01, 0x60});
+        byteBuf.writeBytes(s.getBytes());
+
+        p.sendPluginMessage(plugin, "MC|GameMenu", byteBuf.array());
+
     }
 
 

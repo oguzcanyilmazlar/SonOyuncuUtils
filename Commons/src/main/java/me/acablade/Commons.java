@@ -4,6 +4,9 @@ import org.bukkit.Material;
 
 public class Commons {
 
+    public static class PacketIds{
+        public static final int SPacketLoginScreen = 82;
+    }
 
     public static class ItemIds{
         public static final int SWORD_ZEHIRLIKESKINLIK = 810;

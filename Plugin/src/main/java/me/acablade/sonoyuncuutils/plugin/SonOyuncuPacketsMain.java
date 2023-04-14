@@ -1,5 +1,6 @@
 package me.acablade.sonoyuncuutils.plugin;
 
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class SonOyuncuPacketsMain extends JavaPlugin {
