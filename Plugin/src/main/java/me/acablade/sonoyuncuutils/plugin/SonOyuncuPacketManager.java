@@ -29,7 +29,7 @@ public class SonOyuncuPacketManager {
     }
 
     private static void registerPacket(Class<? extends ECPacket> packetClass, int packetId, PacketType.Sender sender){
-        final PacketType packetType = new PacketType(PacketType.Protocol.PLAY, sender, packetId, MinecraftVersion.BOUNTIFUL_UPDATE, "LoginScreen");
+        final PacketType packetType = new PacketType(PacketType.Protocol.PLAY, sender, packetId, MinecraftVersion.BOUNTIFUL_UPDATE, "DiscordActivity");
 
         packetToType.put(packetClass, packetType);
 
