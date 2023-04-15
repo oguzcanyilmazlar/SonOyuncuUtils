@@ -51,7 +51,6 @@ public final class SonOyuncuPackets implements Listener {
     }
     @EventHandler
     public void onLogin(PlayerLoginEvent event){
-        plugin.getLogger().info(event.getHostname());
         if(event.getHostname().contains("\"token\"")){
             clientList.add(event.getPlayer().getUniqueId());
         }
