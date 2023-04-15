@@ -113,10 +113,6 @@ public class SonOyuncuFurnace extends BlockContainer {
     }
 
     public IBlockData fromLegacyData(int var1) {
-
-        System.out.println(var1);
-
-
         int facing = (var1 & 0xFF00) >>> 8;
         int variant = (var1 & 0xFF);
 
@@ -129,9 +125,6 @@ public class SonOyuncuFurnace extends BlockContainer {
     }
 
     public int toLegacyData(IBlockData var1) {
-
-        System.out.println(var1);
-
         return var1.get(FACING).a() | (var1.get(VARIANT).ordinal() << 8);
     }
 
