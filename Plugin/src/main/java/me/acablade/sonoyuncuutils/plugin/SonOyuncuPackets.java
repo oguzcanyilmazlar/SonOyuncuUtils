@@ -25,6 +25,7 @@ public final class SonOyuncuPackets implements Listener {
     private static SonOyuncuPackets instance;
 
     public static void init(JavaPlugin plugin){
+        if(instance != null) return;
         SonOyuncuItems.init();
         instance = new SonOyuncuPackets(plugin);
         instance.protocolLib = plugin.getServer().getPluginManager().isPluginEnabled("ProtocolLib");
@@ -34,6 +35,7 @@ public final class SonOyuncuPackets implements Listener {
             SonOyuncuPacketManager.registerPackets();
         }
         plugin.getServer().getMessenger().registerIncomingPluginChannel(plugin, "Teyyapclntvars", (s, player, bytes) -> {});
+        plugin.getServer().getMessenger().registerOutgoingPluginChannel(plugin, "MC|GameMenu");
         plugin.getServer().getPluginManager().registerEvents(instance, plugin);
     }
 
@@ -94,8 +96,6 @@ public final class SonOyuncuPackets implements Listener {
         ProtocolLibrary.getProtocolManager().sendServerPacket(player, payload.getHandle());
     }
 
-    String open = "Open";
-
     public byte[] convertToByteArray(int num)
     {
         final byte[] array = new byte[4];
@@ -117,8 +117,8 @@ public final class SonOyuncuPackets implements Listener {
 
         ByteBuf byteBuf = Unpooled.buffer();
 
-        byteBuf.writeByte(0);
-        byteBuf.writeByte(open.getBytes().length);
+        String open = "Open";
+        byteBuf.writeBytes(trimuint8(open.getBytes().length));
         byteBuf.writeBytes(open.getBytes());
 
         byte[] sLen = trimuint8(s.length());
@@ -126,7 +126,7 @@ public final class SonOyuncuPackets implements Listener {
         byteBuf.writeBytes(sLen);
         byteBuf.writeBytes(s.getBytes());
 
-        return Arrays.copyOf(byteBuf.array(), 1 + 1 + 4 + sLen.length + s.length());
+        return Arrays.copyOf(byteBuf.array(), 2 + 4 + sLen.length + s.length());
     }
 
 

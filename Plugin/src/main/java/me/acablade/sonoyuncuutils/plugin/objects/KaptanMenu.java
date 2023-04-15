@@ -12,6 +12,10 @@ public class KaptanMenu {
 
     private List<Game> games = new ArrayList<>();
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String build(){
         return "{\"Title\":\"" + title + "\",\"Games\":" + buildGames() + "}";
     }

@@ -4,3 +4,6 @@ main: me.acablade.sonoyuncuutils.plugin.SonOyuncuPacketsMain
 authors: [ Acablade ]
 softdepend: [ ProtocolLib ]
 description: SonOyuncu Utils
+commands:
+  soutils:
+    aliases: [ sonoyuncuutils, sutils ]
