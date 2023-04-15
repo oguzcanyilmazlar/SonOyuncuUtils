@@ -37,10 +37,16 @@ def write_line():
             itemS = "(new ItemHoe(Item.EnumToolMaterial.EMERALD)).c(\"" + item['name'] +"\"));"
         elif item['type'] == 'block':
             #(new Block(Material.STONE, MaterialMapColor.d)).c(3.0F).b(15.0F).a(Block.i).c("whiteStone").a(CreativeModeTab.b)
-            lineArray.append("        block = new SonOyuncuBlock(Material.STONE, MaterialMapColor.d).strength("+item['strength']+").durability("+item['durability']+").stepSound(Block.i).c(\""+item['name']+"\");")
+
+            if 'fix_rotation' in item:
+                if item['fix_rotation'] == 'cosmetic':
+                    lineArray.append("        block = new SonOyuncuDirectional().c(\""+item['name']+"\");")
+                elif item['fix_rotation'] == 'furnace':
+                    lineArray.append("        block = new SonOyuncuFurnace().c(\""+item['name']+"\");")
+            else:
+                lineArray.append("        block = new SonOyuncuBlock(Material.STONE, MaterialMapColor.d).strength("+item['strength']+").durability("+item['durability']+").stepSound(Block.i).c(\""+item['name']+"\");")
             lineArray.append("        b(" + item['id'] + ", new MinecraftKey(\""+item['name']+"\"), block);")
-            lineArray.append("        a(block, (new ItemMultiTexture(block, block, new String[]{\""+item['name']+"\"})));")
-            itemS = "(new SonOyuncuBlock(Material.STONE, MaterialMapColor.d)).strength("+item['strength']+").durability("+item['durability']+").stepSound(Block.i).c(\""+item['name']+"\"));"
+            lineArray.append("        a(block, (new ItemBlock(block)));")
         if len(itemS) > 0 and item['type'] != 'block':
             lineArray.append('        ' + "a("+item['id']+", \""+item['name']+"\", " + itemS)
 

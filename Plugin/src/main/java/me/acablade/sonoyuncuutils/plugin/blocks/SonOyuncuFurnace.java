@@ -4,25 +4,27 @@ package me.acablade.sonoyuncuutils.plugin.blocks;
 import java.util.Arrays;
 import java.util.Random;
 
+import me.acablade.Commons;
 import net.minecraft.server.v1_8_R3.*;
 import net.minecraft.server.v1_8_R3.EnumDirection.EnumAxis;
 import net.minecraft.server.v1_8_R3.EnumDirection.EnumDirectionLimit;
 
 public class SonOyuncuFurnace extends BlockContainer {
-    public static final BlockStateDirection FACING;
+
+    //
+
+
     public static final BlockStateEnum<Variant> VARIANT = BlockStateEnum.of("variant", Variant.class);
+    public static final BlockStateDirection FACING = BlockStateDirection.of("facing", EnumDirectionLimit.HORIZONTAL);
 
-    private final boolean b;
-    private static boolean N;
-
-    public SonOyuncuFurnace(boolean var1) {
+    public SonOyuncuFurnace() {
         super(Material.STONE);
-        this.j(this.blockStateList.getBlockData().set(FACING, EnumDirection.NORTH).set(VARIANT, Variant.OBSIDIAN));
-        this.b = var1;
+        this.j(this.blockStateList.getBlockData().set(FACING, EnumDirection.NORTH));
+        this.j(this.blockStateList.getBlockData().set(VARIANT, Variant.IRON));
     }
 
     public Item getDropType(IBlockData var1, Random var2, int var3) {
-        return Item.getItemOf(Blocks.FURNACE);
+        return Item.getById(526);
     }
 
     public void onPlace(World var1, BlockPosition var2, IBlockData var3) {
@@ -64,54 +66,37 @@ public class SonOyuncuFurnace extends BlockContainer {
         }
     }
 
-    public static void a(boolean var0, World var1, BlockPosition var2) {
-        IBlockData var3 = var1.getType(var2);
-        TileEntity var4 = var1.getTileEntity(var2);
-        N = true;
-        if (var0) {
-            var1.setTypeAndData(var2, Blocks.LIT_FURNACE.getBlockData().set(FACING, var3.get(FACING)).set(VARIANT, var3.get(VARIANT)), 3);
-            var1.setTypeAndData(var2, Blocks.LIT_FURNACE.getBlockData().set(FACING, var3.get(FACING)).set(VARIANT, var3.get(VARIANT)), 3);
-        } else {
-            var1.setTypeAndData(var2, Blocks.FURNACE.getBlockData().set(FACING, var3.get(FACING)).set(VARIANT, var3.get(VARIANT)), 3);
-            var1.setTypeAndData(var2, Blocks.FURNACE.getBlockData().set(FACING, var3.get(FACING)).set(VARIANT, var3.get(VARIANT)), 3);
-        }
-
-        N = false;
-        if (var4 != null) {
-            var4.D();
-            var1.setTileEntity(var2, var4);
-        }
-
-    }
-
     public TileEntity a(World var1, int var2) {
         return new TileEntityFurnace();
     }
 
+
+    public int getDropData(IBlockData var1) {
+        return (var1.get(VARIANT)).a();
+    }
+
     public IBlockData getPlacedState(World var1, BlockPosition var2, EnumDirection var3, float var4, float var5, float var6, int var7, EntityLiving var8) {
-        return this.getBlockData().set(FACING, var8.getDirection().opposite());
+//        System.out.println(var8.bA().getData());
+        return this.getBlockData().set(FACING, var8.getDirection().opposite()).set(VARIANT, Variant.fromInt(var8.bA().getData()));
     }
 
     public void postPlace(World var1, BlockPosition var2, IBlockData var3, EntityLiving var4, ItemStack var5) {
-        var1.setTypeAndData(var2, var3.set(FACING, var4.getDirection().opposite()), 2);
+
+        var1.setTypeAndData(var2, var3.set(FACING, var4.getDirection().opposite()).set(VARIANT, Variant.fromInt(var5.getData())), 0);
         if (var5.hasName()) {
             TileEntity var6 = var1.getTileEntity(var2);
             if (var6 instanceof TileEntityFurnace) {
                 ((TileEntityFurnace)var6).a(var5.getName());
             }
         }
-
     }
 
     public void remove(World var1, BlockPosition var2, IBlockData var3) {
-        if (!N) {
-            TileEntity var4 = var1.getTileEntity(var2);
-            if (var4 instanceof TileEntityFurnace) {
-                InventoryUtils.dropInventory(var1, var2, (TileEntityFurnace)var4);
-                var1.updateAdjacentComparators(var2, this);
-            }
+        TileEntity var4 = var1.getTileEntity(var2);
+        if (var4 instanceof TileEntityFurnace) {
+            InventoryUtils.dropInventory(var1, var2, (TileEntityFurnace)var4);
+            var1.updateAdjacentComparators(var2, this);
         }
-
         super.remove(var1, var2, var3);
     }
 
@@ -124,49 +109,76 @@ public class SonOyuncuFurnace extends BlockContainer {
     }
 
     public int b() {
-        return 3;
+        return -1;
     }
 
     public IBlockData fromLegacyData(int var1) {
 
-        int variant = var1 >> 8;
-        var1 = (var1 & 0x0000FF00) >> 8;
+        System.out.println(var1);
 
-        EnumDirection var2 = EnumDirection.fromType1(var1);
+
+        int facing = (var1 & 0xFF00) >>> 8;
+        int variant = (var1 & 0xFF);
+
+        EnumDirection var2 = EnumDirection.fromType1(facing);
         if (var2.k() == EnumAxis.Y) {
             var2 = EnumDirection.NORTH;
         }
 
-        return this.getBlockData().set(FACING, var2).set(VARIANT, Variant.values()[variant]);
+        return this.getBlockData().set(FACING, var2).set(VARIANT, Variant.fromInt(variant));
     }
 
     public int toLegacyData(IBlockData var1) {
 
-        int x = var1.get(VARIANT).ordinal() << 8;
-        x &= var1.get(FACING).a();
+        System.out.println(var1);
 
-        return x;
+        return var1.get(FACING).a() | (var1.get(VARIANT).ordinal() << 8);
     }
 
     protected BlockStateList getStateList() {
-        return new BlockStateList(this, FACING, VARIANT);
+        return new BlockStateList(this, new IBlockState[]{FACING, VARIANT});
     }
-
-    static {
-        FACING = BlockStateDirection.of("facing", EnumDirectionLimit.HORIZONTAL);
-    }
-
 
     public static enum Variant implements INamable {
-        IRON("iron"),
-        GOLD("gold"),
-        DIAMOND("diamond"),
-        OBSIDIAN("obsidian");
+        IRON(0, "iron"),
+        GOLD(1, "gold"),
+        DIAMOND(2, "diamond"),
+        OBSIDIAN(3, "obsidian");
 
+        private static final Variant[] h = new Variant[values().length];
+
+        private final int i;
         private final String name;
 
-        private Variant(String name){
+        Variant(int var3, String name) {
+            this.i = var3;
             this.name = name;
+        }
+
+        public int a() {
+            return this.i;
+        }
+
+        public static Variant fromInt(int i){
+            return h[i%h.length];
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+
+        public static Variant a(int var0) {
+            if (var0 < 0 || var0 >= h.length) {
+                var0 = 0;
+            }
+
+            return h[var0];
+        }
+        static {
+            for(Variant var3 : values()) {
+                h[var3.a()] = var3;
+            }
         }
 
         @Override

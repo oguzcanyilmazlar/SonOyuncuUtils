@@ -1,6 +1,10 @@
 header = """package me.acablade.sonoyuncuutils.plugin.items;
 
+import me.acablade.sonoyuncuutils.plugin.blocks.SonOyuncuDirectional;
+import me.acablade.sonoyuncuutils.plugin.blocks.SonOyuncuFurnace;
+
 import net.minecraft.server.v1_8_R3.*;
+
 
 import java.util.Iterator;
 

@@ -8,6 +8,7 @@ public class Commons {
         public static final int SPacketLoginScreen = 82;
     }
 
+
     public static class ItemIds{
         public static final int SWORD_ZEHIRLIKESKINLIK = 810;
         public static final int SWORD_KANKILICI = 811;
@@ -27,13 +28,8 @@ public class Commons {
         public static final int HAMMER = 853;
         public static final int LOCK_IRON = 855;
         public static final int KEY_GOLDEN = 856;
-        public static final int CUSTOMFURNACE = 536;
-        public static final int WASTED_FLOWER = 540;
         public static final int TV = 600;
         public static final int DIGITAL_CLOCK = 601;
-        public static final int CHEST_IRON = 604;
-        public static final int CHEST_GOLD = 605;
-        public static final int CHEST_DIAMOND = 606;
         public static final int MODERN_TV = 610;
         public static final int FRIDGE = 611;
         public static final int TV_STAND = 613;
@@ -46,6 +42,16 @@ public class Commons {
         public static final int GRILL = 620;
         public static final int BIRD_BATH = 621;
         public static final int PODIUM = 535;
+        public static final int BIN = 622;
+        public static final int TOASTER = 623;
+        public static final int WALL_CABINET = 624;
+        public static final int BEDSIDE_CABINET_OAK = 625;
+        public static final int BEDSIDE_CABINET_SPRUCE = 626;
+        public static final int BEDSIDE_CABINET_ACACIA = 629;
+        public static final int VENT = 630;
+        public static final int WORKTABLE = 631;
+        public static final int SECURITY_CAMERA = 632;
+        public static final int TELESCOPE = 633;
     }
 
 }

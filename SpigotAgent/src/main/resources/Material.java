@@ -459,13 +459,8 @@ public enum Material {
     HAMMER(853, 1),
     LOCK_IRON(855, 1),
     KEY_GOLDEN(856, 1),
-    CUSTOMFURNACE(536, 1),
-    WASTED_FLOWER(540, 1),
     TV(600, 1),
     DIGITAL_CLOCK(601, 1),
-    CHEST_IRON(604, 1),
-    CHEST_GOLD(605, 1),
-    CHEST_DIAMOND(606, 1),
     MODERN_TV(610, 1),
     FRIDGE(611, 1),
     TV_STAND(613, 1),
@@ -477,7 +472,17 @@ public enum Material {
     STONE_PATH(619, 1),
     GRILL(620, 1),
     BIRD_BATH(621, 1),
-    PODIUM(535, 1);
+    PODIUM(535, 1),
+    BIN(622, 1),
+    TOASTER(623, 1),
+    WALL_CABINET(624, 1),
+    BEDSIDE_CABINET_OAK(625, 1),
+    BEDSIDE_CABINET_SPRUCE(626, 1),
+    BEDSIDE_CABINET_ACACIA(629, 1),
+    VENT(630, 1),
+    WORKTABLE(631, 1),
+    SECURITY_CAMERA(632, 1),
+    TELESCOPE(633, 1);
 
     private final int id;
     private final Constructor<? extends MaterialData> ctor;

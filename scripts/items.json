@@ -97,123 +97,100 @@
         "type": "item"
     },
     {
-        "id": "536",
-        "name": "customfurnace",
-        "type": "block",
-        "strength": "1.0f",
-        "durability": "10"
-    },
-    {
-        "id": "540",
-        "name": "wasted_flower",
-        "type": "block",
-        "strength": "1.0f",
-        "durability": "10"
-    },
-    {
         "id": "600",
         "name": "tv",
         "type": "block",
         "strength": "1.0f",
-        "durability": "10"
+        "durability": "10",
+        "fix_rotation": "cosmetic"
     },
     {
         "id": "601",
         "name": "digital_clock",
         "type": "block",
         "strength": "1.0f",
-        "durability": "10"
-    },
-    {
-        "id": "604",
-        "name": "chest_iron",
-        "type": "block",
-        "strength": "1.0f",
-        "durability": "10"
-    },
-    {
-        "id": "605",
-        "name": "chest_gold",
-        "type": "block",
-        "strength": "1.0f",
-        "durability": "10"
-    },
-    {
-        "id": "606",
-        "name": "chest_diamond",
-        "type": "block",
-        "strength": "1.0f",
-        "durability": "10"
+        "durability": "10",
+        "fix_rotation": "cosmetic"
     },
     {
         "id": "610",
         "name": "modern_tv",
         "type": "block",
         "strength": "1.0f",
-        "durability": "10"
+        "durability": "10",
+        "fix_rotation": "cosmetic"
     },
     {
         "id": "611",
         "name": "fridge",
         "type": "block",
         "strength": "1.0f",
-        "durability": "10"
+        "durability": "10",
+        "fix_rotation": "cosmetic"
     },
     {
         "id": "613",
         "name": "tv_stand",
         "type": "block",
         "strength": "1.0f",
-        "durability": "10"
+        "durability": "10",
+        "fix_rotation": "cosmetic"
     },
     {
         "id": "614",
         "name": "range_hood",
         "type": "block",
         "strength": "1.0f",
-        "durability": "10"
+        "durability": "10",
+        "fix_rotation": "cosmetic"
     },
     {
         "id": "615",
         "name": "oven",
         "type": "block",
         "strength": "1.0f",
-        "durability": "10"
+        "durability": "10",
+        "fix_rotation": "cosmetic"
     },
     {
         "id": "616",
         "name": "washing_machine",
         "type": "block",
         "strength": "1.0f",
-        "durability": "10"
+        "durability": "10",
+        "fix_rotation": "cosmetic"
     },
     {
         "id": "617",
         "name": "stereo",
         "type": "block",
         "strength": "1.0f",
-        "durability": "10"
+        "durability": "10",
+        "fix_rotation": "cosmetic"
     },
     {
         "id": "618",
         "name": "printer",
         "type": "block",
         "strength": "1.0f",
-        "durability": "10"
+        "durability": "10",
+        "fix_rotation": "cosmetic"
     },
     {
         "id": "619",
         "name": "stone_path",
         "type": "block",
         "strength": "1.0f",
-        "durability": "10"
+        "durability": "10",
+        "fix_rotation": "cosmetic"
     },
     {
         "id": "620",
         "name": "grill",
         "type": "block",
         "strength": "1.0f",
-        "durability": "10"
+        "durability": "10",
+        "fix_rotation": "cosmetic"
     },
     {
         "id": "621",
@@ -223,11 +200,91 @@
         "durability": "10"
     },
     {
-    "id": "535",
-    "name": "podium",
-    "type": "block",
-    "strength": "1.0f",
-    "durability": "10"
+        "id": "535",
+        "name": "podium",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10"
+    },
+    {
+        "id": "622",
+        "name": "bin",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10",
+        "fix_rotation": "cosmetic"
+    },
+    {
+        "id": "623",
+        "name": "toaster",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10",
+        "fix_rotation": "cosmetic"
+    },
+    {
+        "id": "624",
+        "name": "wall_cabinet",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10",
+        "fix_rotation": "cosmetic"
+    },
+    {
+        "id": "625",
+        "name": "bedside_cabinet_oak",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10",
+        "fix_rotation": "cosmetic"
+    },
+    {
+        "id": "626",
+        "name": "bedside_cabinet_spruce",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10",
+        "fix_rotation": "cosmetic"
+    },
+    {
+        "id": "629",
+        "name": "bedside_cabinet_acacia",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10",
+        "fix_rotation": "cosmetic"
+    },
+    {
+        "id": "630",
+        "name": "vent",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10",
+        "fix_rotation": "cosmetic"
+    },
+    {
+        "id": "631",
+        "name": "worktable",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10",
+        "fix_rotation": "cosmetic"
+    },
+    {
+        "id": "632",
+        "name": "security_camera",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10",
+        "fix_rotation": "cosmetic"
+    },
+    {
+        "id": "633",
+        "name": "telescope",
+        "type": "block",
+        "strength": "1.0f",
+        "durability": "10",
+        "fix_rotation": "cosmetic"
     }
     
 
