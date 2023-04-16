@@ -1,10 +1,12 @@
 ### SonOyuncuUtils
 
-#### Eklenecekler:
-- Blok varyantları
+#### Roadmap:
+- Hologramlar
+- Tüm Bloklar (fonksiyonel olarak değil)
 
 #### Nasıl Kurulur
-mvn clean install(maven indirili olması gerek) ile buildledikten sonra SpigotAgent'ın jarını java agent olarak spigota ayarlayın. Plugin'in jarını da kendi plugins klasörüne atabilirsiniz
+- [BuildTools](https://www.spigotmc.org/wiki/buildtools/#running-buildtools) ile 1.8.8 sürümünü kurun
+- mvn clean install(maven indirili olması gerek) ile buildledikten sonra SpigotAgent'ın jarını java agent olarak spigota ayarlayın. Plugin'in jarını da kendi plugins klasörüne atabilirsiniz
 
 #### İtem Nasıl Eklenir
 scripts klasörü içerisinde items.json var, ona dilediğiniz gibi ekledikten sonra ana klasördeki generate.bat'ı çalıştırın.
