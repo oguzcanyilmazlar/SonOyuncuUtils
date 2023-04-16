@@ -1,6 +1,6 @@
 package me.acablade;
 
-import org.apache.commons.io.IOUtils;
+
 import org.objectweb.asm.*;
 import org.objectweb.asm.commons.Remapper;
 
@@ -31,7 +31,8 @@ public class Main {
         public Transformer(){
             try {
                 InputStream is = getClass().getClassLoader().getResourceAsStream("Material.class");
-                byte[] bytes = IOUtils.toByteArray(is);
+                byte[] bytes = new byte[is.available()];
+                is.read(bytes);
                 materialClass = bytes;
             } catch (IOException e) {
                 materialClass = new byte[]{};
